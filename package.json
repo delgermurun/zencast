@@ -1,0 +1,32 @@
+{
+  "name": "zencast",
+  "version": "0.0.1",
+  "description": "Audio player",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-livereload": "^3.8.1",
+    "http-server": "^0.8.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delgermurun/zencast.git"
+  },
+  "keywords": [
+    "audio-player"
+  ],
+  "author": "Delgermurun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delgermurun/zencast/issues"
+  },
+  "homepage": "https://github.com/delgermurun/zencast#readme"
+}
