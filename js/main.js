@@ -1,5 +1,62 @@
-(function main(document) {
+(function main(window, document) {
+  function throttle(fn, threshhold, scope) {
+    threshhold = threshhold || 250;
+    var last;
+    var deferTimer;
+
+    return function () {
+      var context = scope || this;
+
+      var now = +new Date;
+      var args = arguments;
+      if (last && now < last + threshhold) {
+        // hold on to it
+        clearTimeout(deferTimer);
+        deferTimer = setTimeout(function () {
+          last = now;
+          fn.apply(context, args);
+        }, threshhold);
+      } else {
+        last = now;
+        fn.apply(context, args);
+      }
+    };
+  }
+
   const audioElm = document.getElementById('player');
+
+  const storage = {
+    _prefix: 'ZENCAST_',
+
+    save(key, value) {
+      if (!window.localStorage) {
+        return false;
+      }
+
+      window.localStorage.setItem(storage._prefix + key, value);
+      return true;
+    },
+
+    get(key) {
+      if (!window.localStorage) {
+        return;
+      }
+
+      return window.localStorage.getItem(storage._prefix + key);
+    }
+  };
+
+  function saveUrl(url) {
+    if (!url) { return false; }
+
+    return storage.save('url', url);
+  }
+
+  function saveProgress(value) {
+    if (!value) { return false; }
+
+    return storage.save('progress', value);
+  }
 
   function changeSpeed(value) {
     if (!value) { return false; }
@@ -30,6 +87,7 @@
   function insertNewUrl(url) {
     if (!url) { return; }
     $(audioElm).attr('src', url);
+    saveUrl(url);
   }
 
   $(document).ready(function() {
@@ -49,5 +107,9 @@
       e.preventDefault();
       changeTime($(this).val());
     });
+
+    audioElm.ontimeupdate = throttle(function() {
+      saveProgress(audioElm.currentTime);
+    }, 5000);
   });
-})(document);
+})(window, document);
