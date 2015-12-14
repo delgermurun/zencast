@@ -13,6 +13,20 @@
     return true;
   }
 
+  function changeTime(value) {
+    value = parseInt(value);
+
+    if (!value) { return false; }
+
+    if (!audioElm || audioElm.paused) {
+      console.warn('not playing!'); //eslint-disable-line no-console
+      return false;
+    }
+
+    audioElm.currentTime += value;
+    return true;
+  }
+
   function insertNewUrl(url) {
     if (!url) { return; }
     $(audioElm).attr('src', url);
@@ -24,11 +38,16 @@
       insertNewUrl($(this).find('[name=media-url]').val());
     });
 
-    $('[name=speed]').on('change', function speed_change_even() {
+    $('[data-action=change-speed]').on('change', function speed_change_even() {
       const result = changeSpeed($(this).val());
       if (!result) {
         $(this).val('1');
       }
+    });
+
+    $('[data-action=change-time]').on('click', function time_change_even(e) {
+      e.preventDefault();
+      changeTime($(this).val());
     });
   });
 })(document);

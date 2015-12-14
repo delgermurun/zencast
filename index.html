@@ -19,14 +19,14 @@
                 <h4>Zen Cast</h4>
                 <p>Audio player.</p>
                 <form data-action="media-form">
-                    <input type="url" name="media-url" value="http://traffic.libsyn.com/dataskeptic/tf_-_idf.mp3" placeholder="Input URL here..." required>
+                    <input type="url" name="media-url" value="" placeholder="Input URL here..." required>
                     <button type="submit">Listen</button>
                 </form>
 
-                <audio src="" preload="auto" id="player" controls></audio>
+                <audio src="http://traffic.libsyn.com/dataskeptic/tf_-_idf.mp3" preload="auto" id="player" controls></audio>
                 <label>
                     Speed:
-                    <select name="speed">
+                    <select data-action="change-speed">
                         <option value="0.5">0.5x</option>
                         <option value="0.75">0.75x</option>
                         <option value="1" selected>1x</option>
@@ -36,6 +36,8 @@
                         <option value="2">2x</option>
                     </select>
                 </label>
+                <button type="button" data-action="change-time" value="-30"> &lt;&lt; 30sec</button>
+                <button type="button" data-action="change-time" value="30"> &gt;&gt; 30sec</button>
             </div>
         </div>
     </div>
