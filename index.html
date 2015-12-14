@@ -15,12 +15,31 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="one-half column" style="margin-top: 25%">
+            <div class="one-half column" style="margin-top: 15%">
                 <h4>Zen Cast</h4>
                 <p>Audio player.</p>
+                <form data-action="media-form">
+                    <input type="url" name="media-url" value="http://traffic.libsyn.com/dataskeptic/tf_-_idf.mp3" placeholder="Input URL here..." required>
+                    <button type="submit">Listen</button>
+                </form>
+
+                <audio src="" preload="auto" id="player" controls></audio>
+                <label>
+                    Speed:
+                    <select name="speed">
+                        <option value="0.5">0.5x</option>
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="1.75">1.75x</option>
+                        <option value="2">2x</option>
+                    </select>
+                </label>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
