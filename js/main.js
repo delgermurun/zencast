@@ -1,4 +1,5 @@
 (function main(window, document) {
+  // just copy-pasted from https://remysharp.com/2010/07/21/throttling-function-calls
   function throttle(fn, threshhold, scope) {
     threshhold = threshhold || 250;
     var last;
